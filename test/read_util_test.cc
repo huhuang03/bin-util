@@ -14,4 +14,10 @@ TEST(testToUint16, BasicAssertions) {
   EXPECT_EQ(reader_util::toUint32("\x00\x00\x00\x01"), 16777216);
   EXPECT_EQ(reader_util::toUint32("\x00\x00\x00\xff"), 4278190080);
   EXPECT_EQ(reader_util::toUint32("\x00\x00\xff\x00"), 16711680);
+
+  EXPECT_EQ(reader_util::toUint64("\x00\x00\x00\x00\x00\x00\xff\xff"), 18446462598732840960ull);
+  EXPECT_EQ(reader_util::toUint64("\x00\x00\x00\x00\x00\x00\x00\x01"), 72057594037927936ull);
+  EXPECT_EQ(reader_util::toUint64("\x00\x00\x00\x00\x00\x00\x00\xff"), 18374686479671623680ull);
+  EXPECT_EQ(reader_util::toUint64("\x00\x00\x00\x00\x00\x00\xff\x00"), 71776119061217280ull);
+  EXPECT_EQ(reader_util::toUint64("\x01\x00\x00\x00\x00\x00\x00\x00"), 1ull);
 }

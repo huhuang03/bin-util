@@ -8,6 +8,15 @@
 #include <iomanip>
 #include "../include/reader_util/common_util.h"
 
+uint64_t reader_util::toUint64(const char *buffer) {
+  uint64_t rst = 0;
+  for (int i = 0; i < 8; i++) {
+    rst = rst << 8 | (unsigned char)buffer[7 - i];
+  }
+  return rst;
+}
+
+
 uint32_t reader_util::toUint32(const char *buffer) {
   uint32_t rst = 0;
   for (int i = 0; i < 4; i++) {
