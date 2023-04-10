@@ -1,4 +1,8 @@
-add_library(reader-util src/common_util.cc
-        src/content.cc include/content.h src/section.cc include/section.h include/reader_util.h)
+cmake_minimum_required(VERSION 3.24)
 
-target_include_directories(reader-util INTERFACE "${CMAKE_CURRENT_SOURCE_DIR}/include")
+# try set project. See it can include by other project
+project(read-util)
+
+
+add_subdirectory(src)
+add_subdirectory(test)

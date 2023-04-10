@@ -6,14 +6,21 @@
 #define PE_READER_THIRDPART_READER_UTIL_INCLUDE_COMMON_UTIL_H_
 namespace reader_util {
 
+uint16_t toUint16(const char* buffer);
+
 bool isFileExists(const std::string &path);
 
 /**
  * This will print charArray append with a new line.
  */
-void printCharArray(const char* src, int len);
+void printCharArray(const void* src, int len);
 
-void printAsHex(const char* src, int len);
+void printAsHex(const void* src, int len);
+
+/**
+ * for 0x00 11 22 00 return 0x22 11 00
+ */
+std::string toStrAsLEHex(const void *data, int len);
 
 /**
  * char array to int little ending
