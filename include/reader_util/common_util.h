@@ -9,9 +9,9 @@ namespace reader_util {
 uint16_t toUint16(const char* buffer);
 uint32_t toUint32(const char* buffer);
 uint64_t toUint64(const char* buffer);
-uint16_t toInt16(const char* buffer);
-uint32_t toInt32(const char* buffer);
-uint64_t toInt64(const char* buffer);
+int16_t toInt16(const char* buffer);
+int32_t toInt32(const char* buffer);
+int64_t toInt64(const char* buffer);
 
 bool isFileExists(const std::string &path);
 

@@ -8,6 +8,32 @@
 #include <iomanip>
 #include "../include/reader_util/common_util.h"
 
+int64_t reader_util::toInt64(const char *buffer) {
+  int64_t rst = 0;
+  for (int i = 0; i < 8; i++) {
+    rst = rst << 8 | (unsigned char)buffer[7 - i];
+  }
+  return rst;
+}
+
+int32_t reader_util::toInt32(const char *buffer) {
+  int32_t rst = 0;
+  for (int i = 0; i < 4; i++) {
+    rst = rst << 8 | (unsigned char)buffer[3 - i];
+  }
+  return rst;
+}
+
+int16_t reader_util::toInt16(const char *buffer) {
+  int16_t rst = 0;
+  for (int i = 0; i < 2; i++) {
+    // why you warn?
+    // so the result is rst << 8 is uint16_t?
+    rst = rst << 8 | (unsigned char)buffer[1 - i];
+  }
+  return rst;
+}
+
 uint64_t reader_util::toUint64(const char *buffer) {
   uint64_t rst = 0;
   for (int i = 0; i < 8; i++) {
