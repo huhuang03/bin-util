@@ -9,4 +9,9 @@ TEST(testToUint16, BasicAssertions) {
   EXPECT_EQ(reader_util::toUint16("\x00\x01"), 256);
   EXPECT_EQ(reader_util::toUint16("\x00\xff"), 65280);
   EXPECT_EQ(reader_util::toUint16("\xff\x00"), 255);
+
+  EXPECT_EQ(reader_util::toUint32("\x00\x00\xff\xff"), 4294901760);
+  EXPECT_EQ(reader_util::toUint32("\x00\x00\x00\x01"), 16777216);
+  EXPECT_EQ(reader_util::toUint32("\x00\x00\x00\xff"), 4278190080);
+  EXPECT_EQ(reader_util::toUint32("\x00\x00\xff\x00"), 16711680);
 }

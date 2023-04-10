@@ -8,6 +8,14 @@
 #include <iomanip>
 #include "../include/reader_util/common_util.h"
 
+uint32_t reader_util::toUint32(const char *buffer) {
+  uint32_t rst = 0;
+  for (int i = 0; i < 4; i++) {
+    rst = rst << 8 | (unsigned char)buffer[3 - i];
+  }
+  return rst;
+}
+
 uint16_t reader_util::toUint16(const char *buffer) {
   uint16_t rst = (unsigned char)buffer[1];
   rst = (rst << 8) | (unsigned char)buffer[0];
