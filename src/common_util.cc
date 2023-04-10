@@ -6,10 +6,12 @@
 #include <fstream>
 #include <sstream>
 #include <iomanip>
-#include "../include/common_util.h"
+#include "../include/reader_util/common_util.h"
 
 uint16_t reader_util::toUint16(const char *buffer) {
-  return -1;
+  uint16_t rst = (unsigned char)buffer[1];
+  rst = (rst << 8) | (unsigned char)buffer[0];
+  return rst;
 }
 
 void reader_util::printAsHex(const void *src, int len) {

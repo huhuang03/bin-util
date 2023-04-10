@@ -4,8 +4,8 @@
 
 #include <utility>
 
-#include "../include/file_reader.h"
-#include "../include/common_util.h"
+#include "../include/reader_util/file_reader.h"
+#include "../include/reader_util/common_util.h"
 
 reader_util::FileReader::FileReader(std::string path): path(std::move(path)) {
   fs.read((char*)this->path.c_str(), std::ios::binary);

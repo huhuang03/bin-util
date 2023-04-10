@@ -5,10 +5,10 @@ add_library(reader-util
         section.cc
         file_reader.cc
 
-        ../include/i_file_reader.h
-        ../include/file_reader.h
-        ../include/content.h
-        ../include/section.h
-        ../include/reader_util.h)
+        ../include/reader_util/i_file_reader.h
+        ../include/reader_util/file_reader.h
+        ../include/reader_util/content.h
+        ../include/reader_util/section.h
+        ../include/reader_util/reader_util.h)
 
-target_include_directories(reader-util INTERFACE "${CMAKE_CURRENT_SOURCE_DIR}/include")
+target_include_directories(reader-util INTERFACE "${CMAKE_CURRENT_SOURCE_DIR}/../include")
