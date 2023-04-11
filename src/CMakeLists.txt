@@ -1,3 +1,4 @@
+set(CMAKE_CXX_STANDARD 11)
 add_library(reader-util
         common_util.cc
         file_reader.cc

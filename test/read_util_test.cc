@@ -25,4 +25,15 @@ TEST(testToUint16, BasicAssertions) {
   EXPECT_EQ(reader_util::toInt16("\x00\x01"), 256);
   EXPECT_EQ(reader_util::toInt16("\x00\xff"), -256);
   EXPECT_EQ(reader_util::toInt16("\xff\x00"), 255);
+
+  EXPECT_EQ(reader_util::toInt32("\x00\x00\xff\xff"), -65536);
+  EXPECT_EQ(reader_util::toInt32("\x00\x00\x00\x01"), 16777216);
+  EXPECT_EQ(reader_util::toInt32("\x00\x00\x00\xff"), -16777216);
+  EXPECT_EQ(reader_util::toInt32("\x00\x00\xff\x00"), 16711680);
+
+  EXPECT_EQ(reader_util::toInt64("\x00\x00\x00\x00\x00\x00\xff\xff"), -281474976710656ll);
+  EXPECT_EQ(reader_util::toInt64("\x00\x00\x00\x00\x00\x00\x00\x01"), 72057594037927936ll);
+  EXPECT_EQ(reader_util::toInt64("\x00\x00\x00\x00\x00\x00\x00\xff"), -72057594037927936ll);
+  EXPECT_EQ(reader_util::toInt64("\x00\x00\x00\x00\x00\x00\xff\x00"), 71776119061217280ll);
+  EXPECT_EQ(reader_util::toInt64("\x01\x00\x00\x00\x00\x00\x00\x00"), 1ll);
 }
