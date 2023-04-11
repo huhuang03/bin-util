@@ -23,8 +23,9 @@ class FileReader: IFileReader {
   uint16_t readUInt16();
   uint32_t readUInt32();
   uint64_t readUInt64();
-  void readBuffer(char* buffer, int len);
+  void read(char* buffer, int len);
 
+  int16_t peekInt16();
   int32_t peekInt32();
   int64_t peekInt64();
   uint16_t peekUInt16();

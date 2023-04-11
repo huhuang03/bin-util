@@ -16,8 +16,9 @@ class IFileReader {
   virtual uint16_t readUInt16() = 0;
   virtual uint32_t readUInt32() = 0;
   virtual uint64_t readUInt64() = 0;
-  virtual void readBuffer(char* buffer, int len) = 0;
+  virtual void read(char* buffer, int len) = 0;
 
+  virtual int16_t peekInt16() = 0;
   virtual int32_t peekInt32() = 0;
   virtual int64_t peekInt64() = 0;
   virtual uint16_t peekUInt16() = 0;
