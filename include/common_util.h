@@ -15,9 +15,13 @@ void printCharArray(const char* src, int len);
 
 void printAsHex(const char* src, int len);
 
+
 /**
  * char array to int little ending
  */
 int charArray2Int(const void* charArray, int len);
+
+std::string toHex(uint64_t val);
+
 }
 #endif //PE_READER_THIRDPART_READER_UTIL_INCLUDE_COMMON_UTIL_H_

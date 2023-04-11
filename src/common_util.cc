@@ -4,6 +4,7 @@
 
 #include <iostream>
 #include <fstream>
+#include <sstream>
 #include "../include/common_util.h"
 
 void reader_util::printAsHex(const char *src, int len) {
@@ -42,4 +43,11 @@ bool reader_util::isFileExists(const std::string &path) {
     f.close();
   }
   return rst;
+}
+
+std::string reader_util::toHex(uint64_t val) {
+  // how to do this?
+  std::ostringstream oss;
+  oss << "0x" << std::hex << val;
+  return oss.str();
 }
