@@ -7,14 +7,18 @@
 #include <string>
 #include <fstream>
 #include "./i_file_reader.h"
+#include "./endian.h"
 
 namespace reader_util {
 class FileReader: public IFileReader {
  private:
   std::string path;
   std::ifstream fs;
+  Endian endian_;
+
  public:
-  explicit FileReader(const std::string &path);
+  FileReader(const std::string &path): FileReader(path, LITTLE) {};
+  FileReader(const std::string &path, Endian endian);
   ~FileReader();
  public:
   int16_t readInt16() override;

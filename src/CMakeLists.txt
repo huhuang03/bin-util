@@ -1,4 +1,5 @@
 set(CMAKE_CXX_STANDARD 11)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
 add_library(reader-util
         common_util.cc
         file_reader.cc
@@ -10,6 +11,7 @@ add_library(reader-util
         ../include/reader_util/file_reader.h
         ../include/reader_util/content.h
         ../include/reader_util/section.h
+        ../include/reader_util/endian.h
         ../include/reader_util/reader_util.h)
 
 find_package(Boost REQUIRED COMPONENTS filesystem)

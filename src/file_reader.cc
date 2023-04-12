@@ -13,38 +13,61 @@ namespace fs = boost::filesystem;
 int16_t reader_util::FileReader::readInt16() {
   char buffer[2];
   this->fs.read(buffer, 2);
-  return reader_util::toInt16(buffer);
+  if (this->endian_ == LITTLE) {
+    return reader_util::toInt16(buffer);
+  } else {
+    return reader_util::toInt16BigEndian(buffer);
+  }
 }
 
 int32_t reader_util::FileReader::readInt32() {
   char buffer[4];
   this->fs.read(buffer, 4);
-  return reader_util::toInt32(buffer);
+  if (this->endian_ == LITTLE) {
+    return reader_util::toInt32(buffer);
+  } else {
+    return reader_util::toInt32BigEndian(buffer);
+  }
 }
 
 int64_t reader_util::FileReader::readInt64() {
   char buffer[8];
   this->fs.read(buffer, 8);
-  return reader_util::toInt64(buffer);
+  if (this->endian_ == LITTLE) {
+    return reader_util::toInt64(buffer);
+  } else {
+    return reader_util::toInt64BigEndian(buffer);
+  }
 }
 
 uint16_t reader_util::FileReader::readUInt16() {
   char buffer[2];
   this->fs.read(buffer, 2);
-  return reader_util::toUint16(buffer);
+  if (this->endian_ == LITTLE) {
+    return reader_util::toUint16(buffer);
+  } else {
+    return reader_util::toUint16BigEndian(buffer);
+  }
 }
 
 uint32_t reader_util::FileReader::readUInt32() {
   char buffer[4] = {0};
   this->fs.read(buffer, 4);
-  reader_util::printAsHex(buffer, 4);
-  return reader_util::toUint32(buffer);
+  if (this->endian_ == LITTLE) {
+    return reader_util::toUint32(buffer);
+  } else {
+    return reader_util::toUint32BigEndian(buffer);
+  }
 }
 
 uint64_t reader_util::FileReader::readUInt64() {
   char buffer[8];
   this->fs.read(buffer, 8);
-  return reader_util::toUint64(buffer);
+  if (this->endian_ == LITTLE) {
+    return reader_util::toUint64(buffer);
+  } else {
+    return reader_util::toUint64BigEndian(buffer);
+  }
 }
 
 void reader_util::FileReader::read(char *buffer, int len) {
@@ -55,51 +78,65 @@ void reader_util::FileReader::read(char *buffer, int len) {
 int16_t reader_util::FileReader::peekInt16() {
   char buffer[2];
   this->fs.readsome(buffer, 2);
-  return reader_util::toInt16(buffer);
+  if (this->endian_ == LITTLE) {
+    return reader_util::toInt16(buffer);
+  } else {
+    return reader_util::toInt16BigEndian(buffer);
+  }
 }
 
 int32_t reader_util::FileReader::peekInt32() {
   char buffer[4];
   this->fs.readsome(buffer, 4);
-  return reader_util::toInt32(buffer);
+  if (this->endian_ == LITTLE) {
+    return reader_util::toInt32(buffer);
+  } else {
+    return reader_util::toInt32BigEndian(buffer);
+  }
 }
 
 int64_t reader_util::FileReader::peekInt64() {
   char buffer[8];
   this->fs.readsome(buffer, 8);
-  return reader_util::toInt64(buffer);
+  if (this->endian_ == LITTLE) {
+    return reader_util::toInt64(buffer);
+  } else {
+    return reader_util::toInt64BigEndian(buffer);
+  }
 }
 
 uint16_t reader_util::FileReader::peekUInt16() {
   char buffer[2];
   this->fs.readsome(buffer, 2);
-  return reader_util::toUint16(buffer);
+  if (this->endian_ == LITTLE) {
+    return reader_util::toUint16(buffer);
+  } else {
+    return reader_util::toUint16BigEndian(buffer);
+  }
 }
 
 uint32_t reader_util::FileReader::peekUInt32() {
   char buffer[4];
   this->fs.readsome(buffer, 4);
-  return reader_util::toUint32(buffer);
+  if (this->endian_ == LITTLE) {
+    return reader_util::toUint32(buffer);
+  } else {
+    return reader_util::toUint32BigEndian(buffer);
+  }
 }
 
 uint64_t reader_util::FileReader::peekUInt64() {
   char buffer[8];
   this->fs.readsome(buffer, 8);
-  return reader_util::toUint64(buffer);
+  if (this->endian_ == LITTLE) {
+    return reader_util::toUint64(buffer);
+  } else {
+    return reader_util::toUint64BigEndian(buffer);
+  }
 }
 
 void reader_util::FileReader::peekBuffer(char *buffer, int len) {
   this->fs.readsome(buffer, len);
-}
-
-reader_util::FileReader::FileReader(const std::string &path): path(path) {
-  if (!fs::exists(path)) {
-    throw std::invalid_argument("path not exists: " + path);
-  }
-  fs.open(this->path.c_str(), std::ios::binary);
-  if (!fs.is_open()) {
-    throw std::invalid_argument("can't open file: " + path);
-  }
 }
 
 reader_util::FileReader::~FileReader() {
@@ -111,5 +148,16 @@ reader_util::FileReader::~FileReader() {
 void reader_util::FileReader::close() {
   if (this->fs.is_open()) {
     this->fs.close();
+  }
+}
+
+reader_util::FileReader::FileReader(const std::string &path, reader_util::Endian endian): path(path), endian_(endian) {
+  if (!fs::exists(this->path)) {
+    throw std::invalid_argument("path not exists: " + path);
+  }
+//  fs.open(this->path.c_str(), std::ios::binary);
+  fs.open(this->path.c_str());
+  if (!fs.is_open()) {
+    throw std::invalid_argument("can't open file: " + path);
   }
 }

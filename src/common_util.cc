@@ -9,7 +9,7 @@
 #include "../include/reader_util/common_util.h"
 
 template<typename T>
-T toT(const char* buffer) {
+static T toT(const char* buffer) {
   T rst = 0;
   int size = sizeof (T);
   for (int i = 0; i < size; i++) {
@@ -19,7 +19,7 @@ T toT(const char* buffer) {
 }
 
 template<typename T>
-T toTBigEnding(const char* buffer) {
+static T toTBigEnding(const char* buffer) {
   T rst = 0;
   int size = sizeof (T);
   for (int i = 0; i < size; i++) {
@@ -28,6 +28,30 @@ T toTBigEnding(const char* buffer) {
   return rst;
 }
 
+
+uint16_t reader_util::toUint16BigEndian(const char* buffer) {
+  return toTBigEnding<uint16_t>(buffer);
+}
+
+uint32_t reader_util::toUint32BigEndian(const char* buffer) {
+  return toTBigEnding<uint32_t>(buffer);
+}
+
+uint64_t reader_util::toUint64BigEndian(const char* buffer) {
+  return toTBigEnding<uint64_t>(buffer);
+}
+
+int16_t reader_util::toInt16BigEndian(const char* buffer) {
+  return toTBigEnding<uint16_t>(buffer);
+}
+
+int32_t reader_util::toInt32BigEndian(const char* buffer) {
+  return toTBigEnding<uint32_t>(buffer);
+}
+
+int64_t reader_util::toInt64BigEndian(const char* buffer) {
+  return toTBigEnding<uint64_t>(buffer);
+}
 
 int64_t reader_util::toInt64(const char *buffer) {
   return toT<int64_t>(buffer);
