@@ -21,6 +21,8 @@ class FileReader: public IFileReader {
   FileReader(const std::string &path, Endian endian);
   ~FileReader();
  public:
+  std::string readString() override;
+  char readByte() override;
   int16_t readInt16() override;
   int32_t readInt32() override;
   int64_t readInt64() override;
@@ -29,6 +31,7 @@ class FileReader: public IFileReader {
   uint64_t readUInt64() override;
   void read(char* buffer, int len) override;
 
+  char peekByte() override;
   int16_t peekInt16() override;
   int32_t peekInt32() override;
   int64_t peekInt64() override;
@@ -40,6 +43,7 @@ class FileReader: public IFileReader {
    * Close if need.
    */
   void close() override;
+  void changeEndian(Endian endian);
 };
 }
 #endif //READER_UTIL_INCLUDE_FILE_READER_H_

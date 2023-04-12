@@ -28,7 +28,6 @@ static T toTBigEnding(const char* buffer) {
   return rst;
 }
 
-
 uint16_t reader_util::toUint16BigEndian(const char* buffer) {
   return toTBigEnding<uint16_t>(buffer);
 }

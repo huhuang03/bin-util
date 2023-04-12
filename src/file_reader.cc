@@ -10,6 +10,12 @@
 
 namespace fs = boost::filesystem;
 
+char reader_util::FileReader::readByte() {
+  char rst;
+  this->fs.read(&rst, 1);
+  return rst;
+}
+
 int16_t reader_util::FileReader::readInt16() {
   char buffer[2];
   this->fs.read(buffer, 2);
@@ -74,6 +80,11 @@ void reader_util::FileReader::read(char *buffer, int len) {
   this->fs.read(buffer, len);
 }
 
+char reader_util::FileReader::peekByte() {
+  char rst;
+  this->fs.readsome(&rst, 1);
+  return rst;
+}
 
 int16_t reader_util::FileReader::peekInt16() {
   char buffer[2];
@@ -160,4 +171,14 @@ reader_util::FileReader::FileReader(const std::string &path, reader_util::Endian
   if (!fs.is_open()) {
     throw std::invalid_argument("can't open file: " + path);
   }
+}
+
+void reader_util::FileReader::changeEndian(reader_util::Endian endian) {
+  endian_ = endian;
+}
+
+std::string reader_util::FileReader::readString() {
+  std::string rst;
+  std::getline(this->fs, rst, '\x0');
+  return rst;
 }
