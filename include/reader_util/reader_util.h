@@ -7,4 +7,5 @@
 #include "./content.h"
 #include "./section.h"
 #include "./common_util.h"
+#include "./file_reader.h"
 #endif //PE_READER_READER_UTIL_H

@@ -9,33 +9,33 @@
 #include "./i_file_reader.h"
 
 namespace reader_util {
-class FileReader: IFileReader {
+class FileReader: public IFileReader {
  private:
+  std::string path;
   std::ifstream fs;
+ public:
+  explicit FileReader(std::string path);
   ~FileReader();
  public:
-  std::string path;
-  FileReader(std::string path);
- public:
-  int16_t readInt16();
-  int32_t readInt32();
-  int64_t readInt64();
-  uint16_t readUInt16();
-  uint32_t readUInt32();
-  uint64_t readUInt64();
-  void read(char* buffer, int len);
+  int16_t readInt16() override;
+  int32_t readInt32() override;
+  int64_t readInt64() override;
+  uint16_t readUInt16() override;
+  uint32_t readUInt32() override;
+  uint64_t readUInt64() override;
+  void read(char* buffer, int len) override;
 
-  int16_t peekInt16();
-  int32_t peekInt32();
-  int64_t peekInt64();
-  uint16_t peekUInt16();
-  uint32_t peekUInt32();
-  uint64_t peekUInt64();
-  void peekBuffer(char* buffer, int len);
+  int16_t peekInt16() override;
+  int32_t peekInt32() override;
+  int64_t peekInt64() override;
+  uint16_t peekUInt16() override;
+  uint32_t peekUInt32() override;
+  uint64_t peekUInt64() override;
+  void peekBuffer(char* buffer, int len) override;
   /**
    * Close if need.
    */
-  void close();
+  void close() override;
 };
 }
 #endif //READER_UTIL_INCLUDE_FILE_READER_H_
