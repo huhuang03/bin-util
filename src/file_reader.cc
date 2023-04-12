@@ -3,9 +3,12 @@
 //
 
 #include <utility>
+#include <boost/filesystem.hpp>
 
 #include "../include/reader_util/file_reader.h"
 #include "../include/reader_util/common_util.h"
+
+namespace fs = boost::filesystem;
 
 int16_t reader_util::FileReader::readInt16() {
   char buffer[2];
@@ -32,8 +35,9 @@ uint16_t reader_util::FileReader::readUInt16() {
 }
 
 uint32_t reader_util::FileReader::readUInt32() {
-  char buffer[4];
+  char buffer[4] = {0};
   this->fs.read(buffer, 4);
+  reader_util::printAsHex(buffer, 4);
   return reader_util::toUint32(buffer);
 }
 
@@ -88,8 +92,14 @@ void reader_util::FileReader::peekBuffer(char *buffer, int len) {
   this->fs.readsome(buffer, len);
 }
 
-reader_util::FileReader::FileReader(std::string path): path(std::move(path)) {
-  fs.read((char*)this->path.c_str(), std::ios::binary);
+reader_util::FileReader::FileReader(const std::string &path): path(path) {
+  if (!fs::exists(path)) {
+    throw std::invalid_argument("path not exists: " + path);
+  }
+  fs.open(this->path.c_str(), std::ios::binary);
+  if (!fs.is_open()) {
+    throw std::invalid_argument("can't open file: " + path);
+  }
 }
 
 reader_util::FileReader::~FileReader() {
@@ -103,4 +113,3 @@ void reader_util::FileReader::close() {
     this->fs.close();
   }
 }
-

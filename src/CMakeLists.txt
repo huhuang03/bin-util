@@ -12,4 +12,7 @@ add_library(reader-util
         ../include/reader_util/section.h
         ../include/reader_util/reader_util.h)
 
+find_package(Boost REQUIRED COMPONENTS filesystem)
+
 target_include_directories(reader-util INTERFACE "${CMAKE_CURRENT_SOURCE_DIR}/../include")
+target_link_libraries(reader-util Boost::filesystem)

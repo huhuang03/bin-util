@@ -14,7 +14,7 @@ class FileReader: public IFileReader {
   std::string path;
   std::ifstream fs;
  public:
-  explicit FileReader(std::string path);
+  explicit FileReader(const std::string &path);
   ~FileReader();
  public:
   int16_t readInt16() override;

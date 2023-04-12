@@ -8,53 +8,50 @@
 #include <iomanip>
 #include "../include/reader_util/common_util.h"
 
-int64_t reader_util::toInt64(const char *buffer) {
-  int64_t rst = 0;
-  for (int i = 0; i < 8; i++) {
-    rst = rst << 8 | (unsigned char)buffer[7 - i];
+template<typename T>
+T toT(const char* buffer) {
+  T rst = 0;
+  int size = sizeof (T);
+  for (int i = 0; i < size; i++) {
+    rst = rst << 8 | (unsigned char)buffer[size - 1 - i];
   }
   return rst;
+}
+
+template<typename T>
+T toTBigEnding(const char* buffer) {
+  T rst = 0;
+  int size = sizeof (T);
+  for (int i = 0; i < size; i++) {
+    rst = rst << 8 | (unsigned char)buffer[i];
+  }
+  return rst;
+}
+
+
+int64_t reader_util::toInt64(const char *buffer) {
+  return toT<int64_t>(buffer);
 }
 
 int32_t reader_util::toInt32(const char *buffer) {
-  int32_t rst = 0;
-  for (int i = 0; i < 4; i++) {
-    rst = rst << 8 | (unsigned char)buffer[3 - i];
-  }
-  return rst;
+  return toT<int32_t>(buffer);
 }
 
 int16_t reader_util::toInt16(const char *buffer) {
-  int16_t rst = 0;
-  for (int i = 0; i < 2; i++) {
-    // why you warn?
-    // so the result is rst << 8 is uint16_t?
-    rst = rst << 8 | (unsigned char)buffer[1 - i];
-  }
-  return rst;
+  return toT<int16_t>(buffer);
 }
 
 uint64_t reader_util::toUint64(const char *buffer) {
-  uint64_t rst = 0;
-  for (int i = 0; i < 8; i++) {
-    rst = rst << 8 | (unsigned char)buffer[7 - i];
-  }
-  return rst;
+  return toT<uint64_t>(buffer);
 }
 
 
 uint32_t reader_util::toUint32(const char *buffer) {
-  uint32_t rst = 0;
-  for (int i = 0; i < 4; i++) {
-    rst = rst << 8 | (unsigned char)buffer[3 - i];
-  }
-  return rst;
+  return toT<uint32_t>(buffer);
 }
 
 uint16_t reader_util::toUint16(const char *buffer) {
-  uint16_t rst = (unsigned char)buffer[1];
-  rst = (rst << 8) | (unsigned char)buffer[0];
-  return rst;
+  return toT<uint16_t>(buffer);
 }
 
 void reader_util::printAsHex(const void *src, int len) {
