@@ -32,7 +32,6 @@ class IFileReader {
   virtual uint64_t peekUInt64() = 0;
   virtual void peekBuffer(char* buffer, int len) = 0;
 
-
   /**
    * Allow repeat close
    */
