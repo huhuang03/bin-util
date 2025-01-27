@@ -8,7 +8,7 @@
 #include "./content.h"
 #include <vector>
 
-namespace reader_util {
+namespace bu {
 
 /**
  * For now, don't support resize or dynamic change fields.

@@ -5,10 +5,18 @@
 #include <utility>
 #include <boost/filesystem.hpp>
 
-#include "../include/reader_util/file_reader.h"
-#include "../include/reader_util/common_util.h"
+#include "../include/bin_util/file_reader.h"
+#include "../include/bin_util/common_util.h"
 
 namespace fs = boost::filesystem;
+
+void reader_util::FileReader::align(int size) {
+  long long pos = this->fs.tellg();
+  auto mod = size % pos;
+  if (mod != 0) {
+    this->fs.seekg(pos + size - mod);
+  }
+}
 
 char reader_util::FileReader::readByte() {
   char rst;

@@ -6,7 +6,7 @@
 #include <fstream>
 #include <sstream>
 #include <iomanip>
-#include "../include/reader_util/common_util.h"
+#include "../include/bin_util/common_util.h"
 
 template<typename T>
 static T toT(const char* buffer) {

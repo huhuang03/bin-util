@@ -9,7 +9,7 @@
 #include "./i_file_reader.h"
 #include "./endian.h"
 
-namespace reader_util {
+namespace bu {
 class FileReader: public IFileReader {
  private:
   std::string path;
@@ -21,6 +21,7 @@ class FileReader: public IFileReader {
   FileReader(const std::string &path, Endian endian);
   ~FileReader();
  public:
+  void align(int size) override;
   std::string readString() override;
   char readByte() override;
   int16_t readInt16() override;

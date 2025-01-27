@@ -7,9 +7,10 @@
 #include <string>
 #include <fstream>
 
-namespace reader_util {
+namespace bu {
 class IFileReader {
  public:
+  virtual void align(int size) = 0;
   virtual char readByte() = 0;
   virtual int16_t readInt16() = 0;
   virtual int32_t readInt32() = 0;

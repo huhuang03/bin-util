@@ -4,7 +4,7 @@
 
 #include <utility>
 
-#include "../include/reader_util/section.h"
+#include "../include/bin_util/section.h"
 
 reader_util::Section::Section(int size, std::vector<Content> fields): Content(size), _fields(std::move(fields)) {}
 

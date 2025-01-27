@@ -4,7 +4,7 @@
 
 #ifndef READ_UTIL_INCLUDE_READER_UTIL_ENDIAN_H_
 #define READ_UTIL_INCLUDE_READER_UTIL_ENDIAN_H_
-namespace reader_util {
+namespace bu {
 enum Endian {
   BIG, LITTLE
 };

@@ -2,7 +2,7 @@
 // Created by hwf on 2022/12/20.
 //
 
-#include "../include/reader_util/content.h"
+#include "../include/bin_util/content.h"
 
 reader_util::Content::Content(int size): _size(size) {
     _content = static_cast<unsigned char *>(malloc(size));

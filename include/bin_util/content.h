@@ -7,7 +7,7 @@
 
 #include <iostream>
 
-namespace reader_util {
+namespace bu {
 
 /**
  * any better name?

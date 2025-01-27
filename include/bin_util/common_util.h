@@ -4,7 +4,7 @@
 
 #ifndef PE_READER_THIRDPART_READER_UTIL_INCLUDE_COMMON_UTIL_H_
 #define PE_READER_THIRDPART_READER_UTIL_INCLUDE_COMMON_UTIL_H_
-namespace reader_util {
+namespace bu {
 
 uint16_t toUint16(const char* buffer);
 uint32_t toUint32(const char* buffer);
