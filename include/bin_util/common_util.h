@@ -28,7 +28,7 @@ bool isFileExists(const std::string &path);
  */
 void printCharArray(const void* src, int len);
 
-void printAsHex(const void* src, int len);
+void printAsHex(const void* src, int len, const std::string& divider = "");
 
 /**
  * for 0x00 11 22 00 return 0x22 11 00

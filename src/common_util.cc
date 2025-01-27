@@ -77,13 +77,13 @@ uint16_t bu::toUint16(const char *buffer) {
   return toT<uint16_t>(buffer);
 }
 
-void bu::printAsHex(const void *src, int len) {
+void bu::printAsHex(const void *src, int len, const std::string& divider) {
   const auto* p = reinterpret_cast<const unsigned char *>(src);
   std::cout << "0x";
   for (int i = 0; i < len; i++) {
     printf("%02x", *(p + i));
     if (i != len -1) {
-      std::cout << " ";
+      std::cout << divider;
     }
   }
   std::cout << std::endl;
