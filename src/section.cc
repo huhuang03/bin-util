@@ -6,16 +6,16 @@
 
 #include "../include/bin_util/section.h"
 
-reader_util::Section::Section(int size, std::vector<Content> fields): Content(size), _fields(std::move(fields)) {}
+bu::Section::Section(int size, std::vector<Content> fields): Content(size), _fields(std::move(fields)) {}
 
 // how to create a empty field??
-reader_util::Section::Section(int size) : Section(size, std::vector<Content>()) {
+bu::Section::Section(int size) : Section(size, std::vector<Content>()) {
 }
 
-void reader_util::Section::read(std::istream &in) {
+void bu::Section::read(std::istream &in) {
   Content::read(in);
   // set all info?
 }
-void reader_util::Section::setFields(std::vector<Content> fields) {
+void bu::Section::setFields(std::vector<Content> fields) {
   this->_fields = std::move(fields);
 }

@@ -10,7 +10,7 @@
 
 namespace fs = boost::filesystem;
 
-void reader_util::FileReader::align(int size) {
+void bu::FileReader::align(int size) {
   long long pos = this->fs.tellg();
   auto mod = size % pos;
   if (mod != 0) {
@@ -18,159 +18,159 @@ void reader_util::FileReader::align(int size) {
   }
 }
 
-char reader_util::FileReader::readByte() {
+char bu::FileReader::readByte() {
   char rst;
   this->fs.read(&rst, 1);
   return rst;
 }
 
-int16_t reader_util::FileReader::readInt16() {
+int16_t bu::FileReader::readInt16() {
   char buffer[2];
   this->fs.read(buffer, 2);
   if (this->endian_ == LITTLE) {
-    return reader_util::toInt16(buffer);
+    return bu::toInt16(buffer);
   } else {
-    return reader_util::toInt16BigEndian(buffer);
+    return bu::toInt16BigEndian(buffer);
   }
 }
 
-int32_t reader_util::FileReader::readInt32() {
+int32_t bu::FileReader::readInt32() {
   char buffer[4];
   this->fs.read(buffer, 4);
   if (this->endian_ == LITTLE) {
-    return reader_util::toInt32(buffer);
+    return bu::toInt32(buffer);
   } else {
-    return reader_util::toInt32BigEndian(buffer);
+    return bu::toInt32BigEndian(buffer);
   }
 }
 
-int64_t reader_util::FileReader::readInt64() {
+int64_t bu::FileReader::readInt64() {
   char buffer[8];
   this->fs.read(buffer, 8);
   if (this->endian_ == LITTLE) {
-    return reader_util::toInt64(buffer);
+    return bu::toInt64(buffer);
   } else {
-    return reader_util::toInt64BigEndian(buffer);
+    return bu::toInt64BigEndian(buffer);
   }
 }
 
-uint16_t reader_util::FileReader::readUInt16() {
+uint16_t bu::FileReader::readUInt16() {
   char buffer[2];
   this->fs.read(buffer, 2);
   if (this->endian_ == LITTLE) {
-    return reader_util::toUint16(buffer);
+    return bu::toUint16(buffer);
   } else {
-    return reader_util::toUint16BigEndian(buffer);
+    return bu::toUint16BigEndian(buffer);
   }
 }
 
-uint32_t reader_util::FileReader::readUInt32() {
+uint32_t bu::FileReader::readUInt32() {
   char buffer[4] = {0};
   this->fs.read(buffer, 4);
   if (this->endian_ == LITTLE) {
-    return reader_util::toUint32(buffer);
+    return bu::toUint32(buffer);
   } else {
-    return reader_util::toUint32BigEndian(buffer);
+    return bu::toUint32BigEndian(buffer);
   }
 }
 
-uint64_t reader_util::FileReader::readUInt64() {
+uint64_t bu::FileReader::readUInt64() {
   char buffer[8];
   this->fs.read(buffer, 8);
   if (this->endian_ == LITTLE) {
-    return reader_util::toUint64(buffer);
+    return bu::toUint64(buffer);
   } else {
-    return reader_util::toUint64BigEndian(buffer);
+    return bu::toUint64BigEndian(buffer);
   }
 }
 
-void reader_util::FileReader::read(char *buffer, int len) {
+void bu::FileReader::read(char *buffer, int len) {
   this->fs.read(buffer, len);
 }
 
-char reader_util::FileReader::peekByte() {
+char bu::FileReader::peekByte() {
   char rst;
   this->fs.readsome(&rst, 1);
   return rst;
 }
 
-int16_t reader_util::FileReader::peekInt16() {
+int16_t bu::FileReader::peekInt16() {
   char buffer[2];
   this->fs.readsome(buffer, 2);
   if (this->endian_ == LITTLE) {
-    return reader_util::toInt16(buffer);
+    return bu::toInt16(buffer);
   } else {
-    return reader_util::toInt16BigEndian(buffer);
+    return bu::toInt16BigEndian(buffer);
   }
 }
 
-int32_t reader_util::FileReader::peekInt32() {
+int32_t bu::FileReader::peekInt32() {
   char buffer[4];
   this->fs.readsome(buffer, 4);
   if (this->endian_ == LITTLE) {
-    return reader_util::toInt32(buffer);
+    return bu::toInt32(buffer);
   } else {
-    return reader_util::toInt32BigEndian(buffer);
+    return bu::toInt32BigEndian(buffer);
   }
 }
 
-int64_t reader_util::FileReader::peekInt64() {
+int64_t bu::FileReader::peekInt64() {
   char buffer[8];
   this->fs.readsome(buffer, 8);
   if (this->endian_ == LITTLE) {
-    return reader_util::toInt64(buffer);
+    return bu::toInt64(buffer);
   } else {
-    return reader_util::toInt64BigEndian(buffer);
+    return bu::toInt64BigEndian(buffer);
   }
 }
 
-uint16_t reader_util::FileReader::peekUInt16() {
+uint16_t bu::FileReader::peekUInt16() {
   char buffer[2];
   this->fs.readsome(buffer, 2);
   if (this->endian_ == LITTLE) {
-    return reader_util::toUint16(buffer);
+    return bu::toUint16(buffer);
   } else {
-    return reader_util::toUint16BigEndian(buffer);
+    return bu::toUint16BigEndian(buffer);
   }
 }
 
-uint32_t reader_util::FileReader::peekUInt32() {
+uint32_t bu::FileReader::peekUInt32() {
   char buffer[4];
   this->fs.readsome(buffer, 4);
   if (this->endian_ == LITTLE) {
-    return reader_util::toUint32(buffer);
+    return bu::toUint32(buffer);
   } else {
-    return reader_util::toUint32BigEndian(buffer);
+    return bu::toUint32BigEndian(buffer);
   }
 }
 
-uint64_t reader_util::FileReader::peekUInt64() {
+uint64_t bu::FileReader::peekUInt64() {
   char buffer[8];
   this->fs.readsome(buffer, 8);
   if (this->endian_ == LITTLE) {
-    return reader_util::toUint64(buffer);
+    return bu::toUint64(buffer);
   } else {
-    return reader_util::toUint64BigEndian(buffer);
+    return bu::toUint64BigEndian(buffer);
   }
 }
 
-void reader_util::FileReader::peekBuffer(char *buffer, int len) {
+void bu::FileReader::peekBuffer(char *buffer, int len) {
   this->fs.readsome(buffer, len);
 }
 
-reader_util::FileReader::~FileReader() {
+bu::FileReader::~FileReader() {
   if (this->fs.is_open()) {
     this->fs.close();
   }
 }
 
-void reader_util::FileReader::close() {
+void bu::FileReader::close() {
   if (this->fs.is_open()) {
     this->fs.close();
   }
 }
 
-reader_util::FileReader::FileReader(const std::string &path, reader_util::Endian endian): path(path), endian_(endian) {
+bu::FileReader::FileReader(const std::string &path, bu::Endian endian): path(path), endian_(endian) {
   if (!fs::exists(this->path)) {
     throw std::invalid_argument("path not exists: " + path);
   }
@@ -181,11 +181,11 @@ reader_util::FileReader::FileReader(const std::string &path, reader_util::Endian
   }
 }
 
-void reader_util::FileReader::changeEndian(reader_util::Endian endian) {
+void bu::FileReader::changeEndian(bu::Endian endian) {
   endian_ = endian;
 }
 
-std::string reader_util::FileReader::readString() {
+std::string bu::FileReader::readString() {
   std::string rst;
   std::getline(this->fs, rst, '\x0');
   return rst;
