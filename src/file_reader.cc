@@ -2,11 +2,11 @@
 // Created by huhua on 2023/4/9.
 //
 
-#include <utility>
 #include <boost/filesystem.hpp>
 
 #include "../include/bin_util/file_reader.h"
 #include "../include/bin_util/common_util.h"
+#include "bin_util/convert.h"
 
 namespace fs = boost::filesystem;
 
@@ -28,60 +28,54 @@ int16_t bu::FileReader::readInt16() {
   char buffer[2];
   this->fs.read(buffer, 2);
   if (this->endian_ == LITTLE) {
-    return bu::toInt16(buffer);
-  } else {
-    return bu::toInt16BigEndian(buffer);
+    return convert::i16(buffer);
   }
+  return toInt16BigEndian(buffer);
 }
 
 int32_t bu::FileReader::readInt32() {
   char buffer[4];
   this->fs.read(buffer, 4);
   if (this->endian_ == LITTLE) {
-    return bu::toInt32(buffer);
-  } else {
-    return bu::toInt32BigEndian(buffer);
+    return convert::i32(buffer);
   }
+  return toInt32BigEndian(buffer);
 }
 
 int64_t bu::FileReader::readInt64() {
   char buffer[8];
   this->fs.read(buffer, 8);
   if (this->endian_ == LITTLE) {
-    return bu::toInt64(buffer);
-  } else {
-    return bu::toInt64BigEndian(buffer);
+    return convert::i64(buffer);
   }
+  return toInt64BigEndian(buffer);
 }
 
 uint16_t bu::FileReader::readUInt16() {
   char buffer[2];
   this->fs.read(buffer, 2);
   if (this->endian_ == LITTLE) {
-    return bu::toUint16(buffer);
-  } else {
-    return bu::toUint16BigEndian(buffer);
+    return convert::u16(buffer);
   }
+  return toUint16BigEndian(buffer);
 }
 
 uint32_t bu::FileReader::readUInt32() {
   char buffer[4] = {0};
   this->fs.read(buffer, 4);
   if (this->endian_ == LITTLE) {
-    return bu::toUint32(buffer);
-  } else {
-    return bu::toUint32BigEndian(buffer);
+    return convert::u32(buffer);
   }
+  return toUint32BigEndian(buffer);
 }
 
 uint64_t bu::FileReader::readUInt64() {
   char buffer[8];
   this->fs.read(buffer, 8);
   if (this->endian_ == LITTLE) {
-    return bu::toUint64(buffer);
-  } else {
-    return bu::toUint64BigEndian(buffer);
+    return convert::u64(buffer);
   }
+  return toUint64BigEndian(buffer);
 }
 
 void bu::FileReader::read(char *buffer, int len) {
@@ -98,60 +92,54 @@ int16_t bu::FileReader::peekInt16() {
   char buffer[2];
   this->fs.readsome(buffer, 2);
   if (this->endian_ == LITTLE) {
-    return bu::toInt16(buffer);
-  } else {
-    return bu::toInt16BigEndian(buffer);
+    return convert::i16(buffer);
   }
+  return toInt16BigEndian(buffer);
 }
 
 int32_t bu::FileReader::peekInt32() {
   char buffer[4];
   this->fs.readsome(buffer, 4);
   if (this->endian_ == LITTLE) {
-    return bu::toInt32(buffer);
-  } else {
-    return bu::toInt32BigEndian(buffer);
+    return convert::i32(buffer);
   }
+  return toInt32BigEndian(buffer);
 }
 
 int64_t bu::FileReader::peekInt64() {
   char buffer[8];
   this->fs.readsome(buffer, 8);
   if (this->endian_ == LITTLE) {
-    return bu::toInt64(buffer);
-  } else {
-    return bu::toInt64BigEndian(buffer);
+    return convert::i64(buffer);
   }
+  return toInt64BigEndian(buffer);
 }
 
 uint16_t bu::FileReader::peekUInt16() {
   char buffer[2];
   this->fs.readsome(buffer, 2);
   if (this->endian_ == LITTLE) {
-    return bu::toUint16(buffer);
-  } else {
-    return bu::toUint16BigEndian(buffer);
+    return convert::u16(buffer);
   }
+  return toUint16BigEndian(buffer);
 }
 
 uint32_t bu::FileReader::peekUInt32() {
   char buffer[4];
   this->fs.readsome(buffer, 4);
   if (this->endian_ == LITTLE) {
-    return bu::toUint32(buffer);
-  } else {
-    return bu::toUint32BigEndian(buffer);
+    return convert::u32(buffer);
   }
+  return toUint32BigEndian(buffer);
 }
 
 uint64_t bu::FileReader::peekUInt64() {
   char buffer[8];
   this->fs.readsome(buffer, 8);
   if (this->endian_ == LITTLE) {
-    return bu::toUint64(buffer);
-  } else {
-    return bu::toUint64BigEndian(buffer);
+    return convert::u64(buffer);
   }
+  return toUint64BigEndian(buffer);
 }
 
 void bu::FileReader::peekBuffer(char *buffer, int len) {
@@ -181,7 +169,7 @@ bu::FileReader::FileReader(const std::string &path, bu::Endian endian): path(pat
   }
 }
 
-void bu::FileReader::changeEndian(bu::Endian endian) {
+void bu::FileReader::changeEndian(const Endian endian) {
   endian_ = endian;
 }
 

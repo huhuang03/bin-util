@@ -8,4 +8,8 @@
 #include "./section.h"
 #include "./common_util.h"
 #include "./file_reader.h"
+#include "./print.h"
+#include "./read.h"
+#include "./type.h"
+#include "./convert.h"
 #endif //PE_READER_READER_UTIL_H

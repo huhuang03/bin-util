@@ -5,7 +5,6 @@
 #ifndef READER_UTIL_INCLUDE_I_FILE_READER_H_
 #define READER_UTIL_INCLUDE_I_FILE_READER_H_
 #include <string>
-#include <fstream>
 
 namespace bu {
 class IFileReader {

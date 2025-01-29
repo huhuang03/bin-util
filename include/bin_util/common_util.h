@@ -6,13 +6,6 @@
 #define PE_READER_THIRDPART_READER_UTIL_INCLUDE_COMMON_UTIL_H_
 namespace bu {
 
-uint16_t toUint16(const char* buffer);
-uint32_t toUint32(const char* buffer);
-uint64_t toUint64(const char* buffer);
-int16_t toInt16(const char* buffer);
-int32_t toInt32(const char* buffer);
-int64_t toInt64(const char* buffer);
-
 uint16_t toUint16BigEndian(const char* buffer);
 uint32_t toUint32BigEndian(const char* buffer);
 uint64_t toUint64BigEndian(const char* buffer);
@@ -28,7 +21,6 @@ bool isFileExists(const std::string &path);
  */
 void printCharArray(const void* src, int len);
 
-void printAsHex(const void* src, int len, const std::string& divider = "");
 
 /**
  * for 0x00 11 22 00 return 0x22 11 00
